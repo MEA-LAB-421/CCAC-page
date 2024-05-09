@@ -20,17 +20,17 @@
 
 ## 日程安排
 
-| **时间节点**                         | **相关事宜**                                                    |
-|----------------------------------|-------------------------------------------------------------|
-| 2024年5月5日     8:00 AM（GMT+08:00） | 任务发布与报名启动，                                                  |
-| 2024年5月15日   8:00 AM（GMT+08:00）  | 训练数据发布                                                      |
-| 2024年5月30日   8:00 AM（GMT+08:00）  | **A榜测试集**数据发布，A榜提交入口发布|
-| 2024年6月30日   8:00 AM（GMT+08:00）  | **A榜**提交截止（报名结束）                                                |
-| 2024年7月1日     8:00 AM（GMT+08:00） | **A榜**成绩公布 ；**B榜**测试数据发布；**B榜**提交入口发布（**3次**提交机会）                           |
-| 2024年7月5日     8:00 AM（GMT+08:00） | **B榜**提交截止                               |
-| 2024年7月8日     8:00 AM（GMT+08:00） | 2-3页技术报告提交                                                  |
-| 2024年7月10日 10:00 AM（GMT+08:00）   | B榜成绩及最终比赛结果公布                                               |
-| 2024年7月20日 10:00 AM（GMT+08:00）   | CCAC2024大会召开及颁奖典礼                                           |
+| **时间节点**                         | **相关事宜**                                          |
+| -------------------------------- | ------------------------------------------------- |
+| 2024年5月5日     8:00 AM（GMT+08:00） | 任务发布与报名启动，                                        |
+| 2024年5月15日   8:00 AM（GMT+08:00）  | 训练数据发布                                            |
+| 2024年5月30日   8:00 AM（GMT+08:00）  | **A榜测试集**数据发布，A榜提交入口发布                            |
+| 2024年6月30日   8:00 AM（GMT+08:00）  | **A榜**提交截止（报名结束）                                  |
+| 2024年7月1日     8:00 AM（GMT+08:00） | **A榜**成绩公布 ；**B榜**测试数据发布；**B榜**提交入口发布（**3次**提交机会） |
+| 2024年7月5日     8:00 AM（GMT+08:00） | **B榜**提交截止                                        |
+| 2024年7月8日     8:00 AM（GMT+08:00） | 2-3页技术报告提交                                        |
+| 2024年7月10日 10:00 AM（GMT+08:00）   | B榜成绩及最终比赛结果公布                                     |
+| 2024年7月20日 10:00 AM（GMT+08:00）   | CCAC2024大会召开及颁奖典礼                                 |
 
 ## 注意事项
 
@@ -55,9 +55,10 @@
   - 部分被试人脸图片数据不可被用于论文展示，具体信息请参考协议；
   - 所有/部分数据样本不能擅自公开发布，或者提供给第三者使用。
 - DFME数据集论文引用格式如下：
-```
-Sirui Zhao, Huaying Tang, Xinglong Mao, Shifeng Liu, Hao Wang, Tong Xu, Enhong Chen. DFME: A New Benchmark for Dynamic Facial Micro-expression Recognition," in IEEE Transactions on Affective Computing [J]. IEEE Transactions on Affective Computing, doi: 10.1109/TAFFC.2023.3341918，2023.
-```
+  
+  ```
+  Sirui Zhao, Huaying Tang, Xinglong Mao, Shifeng Liu, Hao Wang, Tong Xu, Enhong Chen. DFME: A New Benchmark for Dynamic Facial Micro-expression Recognition," in IEEE Transactions on Affective Computing [J]. IEEE Transactions on Affective Computing, doi: 10.1109/TAFFC.2023.3341918，2023.
+  ```
 
 ## DFME数据集介绍
 
@@ -72,55 +73,47 @@ DFME数据集是目前数量规模最大、采集帧率最高的动态自发微�
 * 参赛者可以使用除DFME测试集外的微表情/表情数据用于训练。但如果使用了除DFME训练集以外的数据，请在后续的技术分享中进行说明，以便后续研究参考。使用额外数据不会对排名产生影响，但使用额外数据必须给出数据获取方式以保证方法的可复现性，否则成绩无效。
 * 训练数据为未进行人脸裁剪、对齐等操作的原始数据，预处理方法的选择（或不进行预处理）是参赛方案的一部分 ，参赛者可以自行选择。
 
-
 # 评估协议
 
 ## 评价指标
-本比赛评估指标同DFME数据集论文所示，使用了UF1、UAR及ACC指标，其中以UF1作为排名依据。
 
-### ACC
-ACC is one of the most common metrics, which can evaluate the overall performance of the recognition method on the database. It is calculated as follows: 
+本比赛评估指标同DFME数据集论文所示，使用了非加权F1分数（UF1）、非加权平均召回率（UAR）及准确率（ACC）指标，其中以UF1作为排名依据。
+为了方便说明，记$K=7$为样本类别总数，$N_i$表示第$i$类的样本总数，$TP_i,FP_i,FN_i$分别表示第$i$类样本的预测结果中真正例、假正例和假负例的样本数量。
 
-$$ACC=\frac{\sum_{i=1}^{K} T P_i}{\sum_{i=1}^{K} N_i}$$
+非加权F1分数（UF1）计算如下：
 
-where $K$ represents the number of the classes, $N_i$ stands for the sample number of the $i$-th class and $TP_i$ is the number of true positive samples of the $i$-th class. 
+$$ UF1=\frac{1}{K} \sum_{i=1}^K \frac{2 \cdot TP_i}{2 \cdot TP_i+FP_i+FN_i} $$
 
-### Unweighted F1-score(UF1)
-UF1, also known as macro-averaged F1-score, is defined as:
+非加权平均召回率（UAR）计算如下：
 
-$$ U F 1=\frac{1}{K} \sum_{i=1}^K \frac{2 \cdot T P_i}{2 \cdot T P_i+F P_i+F N_i}  $$
+$$ UAR=\frac{1}{K} \sum_{i=1}^K \frac{TP_i}{N_i} $$
 
-Class imbalance is an intractable problem in the MER task, so introducing UF1 as an evaluation metric can better measure the method's performance in all classes rather than in some major classes.
+准确率（ACC）计算如下: 
 
-### Unweighted Average Recall(UAR)
-UAR is also a more suitable metric than ACC when dealing with class imbalance.
+$$ ACC=\frac{\sum_{i=1}^{K} TP_i}{\sum_{i=1}^{K} N_i} $$
 
-$$ U A R=\frac{1}{K} \sum_{i=1}^K \frac{T P_i}{N_i} $$
 
-Both UF1 and UAR can effectively assess whether MER methods provide accurate predictions across all classes.
 
 ## 评测方式
+
 评测阶段中，参赛者需要在测试集上测试自己提出的方法，并向主办方提供预测的情感标签，具体格式参见第五节中结果提交相关内容。之后主办方将根据参赛者的识别结果计算评价指标并给出最终排名。
 
 # 结果提交
+
 - **结果在线提交平台及入口地址为：**[link](https://www.codabench.org/competitions/2970/)
 - **最终一次提交内容包括**:
-    - **Github项目地址**。其中包括项目的全部代码、训练好模型以及相关说明文件等相关文件。
-    - **全部的测试集的预测结果**。参赛者需要利用自己的模型和方法（对应上面github）对全部的测试集样本进行预测，给出情感类别预测结果。预测结果的提交格式请参见：**（提供一个样例文件）**。
-    - **技术报告**。2~3页，主要用于说明包括但不限于参赛者的识别方法、预处理过程、识别结果及实验分析等相关内容。
-    - **前三名**需要在CCAC2024上进行技术分享。
+  - **Github项目地址**。其中包括项目的全部代码、训练好模型以及相关说明文件等相关文件。
+  - **全部的测试集的预测结果**。参赛者需要利用自己的模型和方法（对应上面github）对全部的测试集样本进行预测，给出情感类别预测结果。预测结果的提交格式请参见：**（提供一个样例文件）**。
+  - **技术报告**。2~3页，主要用于说明包括但不限于参赛者的识别方法、预处理过程、识别结果及实验分析等相关内容。
+  - **前三名**需要在CCAC2024上进行技术分享。
 
 # 参赛规则
+
 对以下情况，主办方保留取消参赛资格的权利：
+
 * 提交不完整，如未提供项目代码、未提供规范的预测结果文件等；
 * 预测结果与提交代码不一致；
 * 有不遵守数据协议行为的，一经发现，直接取消资格；
 * 未提交技术报告对方法进行说明；
-* **违规刷榜**
+* 违规刷榜
 * 其他违反比赛公平原则的情况。
-
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
