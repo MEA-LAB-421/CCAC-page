@@ -42,33 +42,45 @@ Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 ## 数据获取
 
-* 所有参赛者首先需要获得DFME数据集使用许可和参赛队伍注册表，具体信息请参见如下网站查看：[link](https://mea-lab-421.github.io/)
-* 
-##### Header 5
+- 所有参赛者首先需要获得DFME数据集使用许可和参赛队伍注册表，具体信息请参见如下网站查看：[link](https://mea-lab-421.github.io/)
+- DFME数据集协议请从如下网址获取：[link](https://mea-lab-421.github.io/files/DFME_license.pdf)
+- 参赛队伍注册：[link](https://docs.qq.com/form/page/DQ3dVQ3NDVkdnSHNm)
+- 由于人脸数据特别敏感，请仔细阅读数据使用协议，这里对一些注意事项再次进行说明：
+  - DFME数据集仅可使用于包括本次比赛在内的学术研究相关用途，严禁商用；
+  - 学生参赛者在申请DFME数据集时需要导师同意并提供导师签名的数据集协议；
+  - 部分被试人脸图片数据不可被用于论文展示，具体信息请参考协议；
+  - 所有/部分数据样本不能擅自公开发布，或者提供给第三者使用。
+- DFME数据集论文引用格式如下：
+```
+Sirui Zhao, Huaying Tang, Xinglong Mao, Shifeng Liu, Hao Wang, Tong Xu, Enhong Chen. DFME: A New Benchmark for Dynamic Facial Micro-expression Recognition," in IEEE Transactions on Affective Computing [J]. IEEE Transactions on Affective Computing, doi: 10.1109/TAFFC.2023.3341918，2023.
+```
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
+## DFME数据集介绍
 
-###### Header 6
+DFME数据集是目前数量规模最大、采集帧率最高的动态自发微表情数据集，共有来自671名被试（656名实际有效）的7526个微表情视频样本，包含了七种情感类别：高兴（happiness）、愤怒（anger）、鄙视（contempt）、厌恶（disgust）、恐惧（fear）、伤心（sadness）和惊讶（surprise）。采集帧率覆盖了200、300或500fps。本次比赛使用DFME中**259名被试**的**2629个微表情**视频样本。此外还提供了起始帧、峰值帧及结束帧的标注以及AU标签的标注。
 
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
+## 数据划分
 
-### There's a horizontal rule below this.
+本次比赛使用DFME中259名被试的2629个微表情视频样本。其中176名被试的1856个样本作为训练集，这部分数据及其关键帧标签和情绪类别标签在比赛开始时将提供给所有参赛者；剩下的样本将不重复划分为A榜和B榜两部分测试集，为了保证比赛的公平性，测试集在比赛评测阶段前将对参赛者不可见。评测阶段时，仅向参赛者提供测试集样本及样本名及帧率信息等信息，但不提供情绪类别标签，全部数据及标签将在后续比赛结束后向申请者提供。**为减少被试身份信息的影响，这三部分数据的被试互不重叠**。
 
-* * *
+### 注意事项
 
-### Here is an unordered list:
+* 参赛者可以使用除DFME测试集外的微表情/表情数据用于训练。但如果使用了除DFME训练集以外的数据，请在后续的技术分享中进行说明，以便后续研究参考。使用额外数据不会对排名产生影响，但使用额外数据必须给出数据获取方式以保证方法的可复现性，否则成绩无效。
+* 训练数据为未进行人脸裁剪、对齐等操作的原始数据，预处理方法的选择（或不进行预处理）是参赛方案的一部分 ，参赛者可以自行选择。
 
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
+
+# 评估协议
+
+## 评价指标
+本比赛评估指标同DFME数据集论文所示，使用了UF1、UAR及ACC指标，其中以UF1作为排名依据。
+
+### ACC
+ACC is one of the most common metrics, which can evaluate the overall performance of the recognition method on the database. It is calculated as follows:
+    \begin{equation}
+	ACC=\frac{\sum_{i=1}^K TP_i}{\sum_{i=1}^K N_i},
+	\end{equation}\label{acc}%
+    where $K$ represents the number of the classes, $N_i$ stands for the sample number of the $i$-th class and $TP_i$ is the number of true positive samples of the $i$-th class. 
+
 
 ### And an ordered list:
 
