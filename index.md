@@ -10,10 +10,6 @@
     </script>
 </head>
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
-
-[Link to another page](./another-page.html).
-
 # 比赛简介
 
 微表情是一种微弱的、短暂的和无意识的面部情感表达，通常发生在有压力的情境下，伴随着个体尝试掩盖其内心真实想法时产生。由于微表情能有效地揭露个体的真实情感和意图，所以准确识别微表情在刑侦审讯、临床心理、商业洽淡等多个领域都有重要的应用价值。微表情自动识别旨在让机器有足够的智能，感知人脸视频序列的微表情运动特征，并理解对应的隐藏情绪。近年来，微表情识别研究已经吸引了大量情感计算研究者们的关注，但微表情运动微弱、短暂且局部，以及缺乏大规模训练样本，严重制约了微表情识别及应用的发展。
@@ -85,60 +81,46 @@ DFME数据集是目前数量规模最大、采集帧率最高的动态自发微�
 ### ACC
 ACC is one of the most common metrics, which can evaluate the overall performance of the recognition method on the database. It is calculated as follows: 
 
-$ACC=\frac{\sum_{i=1}^{K} T P_i}{\sum_{i=1}^{K} N_i}$
+$$ACC=\frac{\sum_{i=1}^{K} T P_i}{\sum_{i=1}^{K} N_i}$$
 
 where $K$ represents the number of the classes, $N_i$ stands for the sample number of the $i$-th class and $TP_i$ is the number of true positive samples of the $i$-th class. 
 
+### Unweighted F1-score(UF1)
+UF1, also known as macro-averaged F1-score, is defined as:
 
-### And an ordered list:
+$$ U F 1=\frac{1}{K} \sum_{i=1}^K \frac{2 \cdot T P_i}{2 \cdot T P_i+F P_i+F N_i}  $$
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
+Class imbalance is an intractable problem in the MER task, so introducing UF1 as an evaluation metric can better measure the method's performance in all classes rather than in some major classes.
 
-### And a nested list:
+### Unweighted Average Recall(UAR)
+UAR is also a more suitable metric than ACC when dealing with class imbalance.
 
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
+$$ U A R=\frac{1}{K} \sum_{i=1}^K \frac{T P_i}{N_i} $$
 
-### Small image
+Both UF1 and UAR can effectively assess whether MER methods provide accurate predictions across all classes.
 
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
+## 评测方式
+评测阶段中，参赛者需要在测试集上测试自己提出的方法，并向主办方提供预测的情感标签，具体格式参见第五节中结果提交相关内容。之后主办方将根据参赛者的识别结果计算评价指标并给出最终排名。
+
+# 结果提交
+- **结果在线提交平台及入口地址为：**
+- **最终一次提交内容包括**:
+    - **Github项目地址**。其中包括项目的全部代码、训练好模型以及相关说明文件等相关文件。
+    - **全部的测试集的预测结果**。参赛者需要利用自己的模型和方法（对应上面github）对全部的测试集样本进行预测，给出情感类别预测结果。预测结果的提交格式请参见：**（提供一个样例文件）**。
+    - **技术报告**。2~3页，主要用于说明包括但不限于参赛者的识别方法、预处理过程、识别结果及实验分析等相关内容。
+    - 前三名需要在CCAC2024上进行技术分享（**前三名免注册费**）。
+
+# 参赛规则
+对以下情况，主办方保留取消参赛资格的权利：
+* 提交不完整，如未提供项目代码、未提供规范的预测结果文件等；
+* 预测结果与提交代码不一致；
+* 有不遵守数据协议行为的，一经发现，直接取消资格；
+* 未提交技术报告对方法进行说明；
+* **违规刷榜**
+* 其他违反比赛公平原则的情况。
+
 
 ### Large image
 
 ![Branching](https://guides.github.com/activities/hello-world/branching.png)
 
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
