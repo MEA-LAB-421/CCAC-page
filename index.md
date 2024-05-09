@@ -75,11 +75,9 @@ DFME数据集是目前数量规模最大、采集帧率最高的动态自发微�
 本比赛评估指标同DFME数据集论文所示，使用了UF1、UAR及ACC指标，其中以UF1作为排名依据。
 
 ### ACC
-ACC is one of the most common metrics, which can evaluate the overall performance of the recognition method on the database. It is calculated as follows:$\sqrt{3x-1}+(1+x)^2$
-$$
-A C C=\frac{\sum_{i=1}^K T P_i}{\sum_{i=1}^K N_i},
-$$
-    where $K$ represents the number of the classes, $N_i$ stands for the sample number of the $i$-th class and $TP_i$ is the number of true positive samples of the $i$-th class. 
+ACC is one of the most common metrics, which can evaluate the overall performance of the recognition method on the database. It is calculated as follows: 
+$$A C C=\frac{\sum_{i=1}^{K} T P_i}{\sum_{i=1}^{K} N_i}$$
+where $K$ represents the number of the classes, $N_i$ stands for the sample number of the $i$-th class and $TP_i$ is the number of true positive samples of the $i$-th class. 
 
 
 ### And an ordered list:
