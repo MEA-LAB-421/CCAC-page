@@ -84,7 +84,9 @@ DFME数据集是目前数量规模最大、采集帧率最高的动态自发微�
 
 ### ACC
 ACC is one of the most common metrics, which can evaluate the overall performance of the recognition method on the database. It is calculated as follows: 
-$$A C C=\frac{\sum_{i=1}^{K} T P_i}{\sum_{i=1}^{K} N_i}$$
+
+$ACC=\frac{\sum_{i=1}^{K} T P_i}{\sum_{i=1}^{K} N_i}$
+
 where $K$ represents the number of the classes, $N_i$ stands for the sample number of the $i$-th class and $TP_i$ is the number of true positive samples of the $i$-th class. 
 
 
