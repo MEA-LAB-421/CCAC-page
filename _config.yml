@@ -3,3 +3,4 @@ description: 一句高大上的描述
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-cayman
+markdown: kramdown
